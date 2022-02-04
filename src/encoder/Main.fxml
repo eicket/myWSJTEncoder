@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.ToggleButtonGroup?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="encoder.MainController">
+    <children>
+        <ToggleButtonGroup layoutX="50.0" layoutY="30.0" prefWidth="400.0" selectionType="SINGLE">
+            <toggles>
+                <RadioButton fx:id="offButton" mnemonicParsing="false" onMouseClicked="#offClicked" prefWidth="60.0" selected="true" text="Off" />
+                <RadioButton fx:id="toneButton" mnemonicParsing="false" onMouseClicked="#toneClicked" prefWidth="60.0" text="Tone" />                   
+                <RadioButton fx:id="wsprButton" mnemonicParsing="false" onMouseClicked="#wsprClicked" prefWidth="60.0" text="WSPR" />              
+                <RadioButton fx:id="ft4Button" mnemonicParsing="false" onMouseClicked="#ft4Clicked" prefWidth="60.0" text="FT4" />
+                <RadioButton fx:id="ft8Button1" mnemonicParsing="false" onMouseClicked="#ft8Clicked" prefWidth="60.0" text="FT8" />
+            </toggles>
+        </ToggleButtonGroup>
+        <ChoiceBox fx:id="audioOutBox" layoutX="50.0" layoutY="250.0" prefHeight="25.0" prefWidth="220.0" />
+        <TextField fx:id="fSelectedField" layoutX="50.0" layoutY="100.0" onKeyPressed="#fSelectedFieldKeyPressed" onScroll="#fSelectedFieldScroll" prefHeight="25.0" prefWidth="60.0" text="1500" />
+        <Label fx:id="baseFrequencyLabel" layoutX="120.0" layoutY="100.0" prefHeight="25.0" prefWidth="150.0" text="base f : " />
+        <TextField fx:id="wsprMessageField" layoutX="50.0" layoutY="150.0" onKeyPressed="#wsprMessageFieldKeyPressed" prefHeight="25.0" prefWidth="120.0" text="ON4PB JO20 30" />
+        <Label layoutX="180.0" layoutY="150.0" prefHeight="25.0" prefWidth="80.0" text="WSPR msg" />
+        <TextField fx:id="ftMessageField" layoutX="50.0" layoutY="200.0" onKeyPressed="#ftMessageFieldKeyPressed" prefHeight="25.0" prefWidth="120.0" text="FREE FRE FREE" />
+        <Label layoutX="180.0" layoutY="200.0" prefHeight="25.0" prefWidth="100.0" text="FT4/FT8 msg" />
+        <Slider fx:id="gainSlider" layoutX="400.0" layoutY="20.0" majorTickUnit="2.5" max="90.0" min="12.0" minorTickCount="1" orientation="VERTICAL" prefHeight="280.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="50.0" />
+        <Label fx:id="gainLabel" layoutX="400.0" layoutY="310.0" prefHeight="25.0" prefWidth="70.0" text="gain in dB" />
+    </children>
+</AnchorPane>

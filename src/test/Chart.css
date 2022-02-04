@@ -1,0 +1,42 @@
+/* from outside to inside the chart */
+/* see jfxpub-charts.pdf */
+.chart {   
+    -fx-padding: 20px;        
+    -fx-background-color: #ccffff;
+
+}
+.chart-content{
+    -fx-padding:30px;
+    -fx-background-color: #ffcccc;
+
+}
+
+/* inside the xAxis and yAxis */
+.chart-plot-background {
+    -fx-background-color: #e2ecfe;
+}
+.chart-vertical-grid-lines {
+    -fx-stroke: #3278fa;
+}
+.chart-horizontal-grid-lines {
+    -fx-stroke: #3278fa;
+}
+.chart-alternative-row-fill {
+    -fx-fill: #99bcfd;
+    -fx-stroke: transparent;
+    -fx-stroke-width: 0;
+}
+
+/* the chart line itself */
+.chart-series-line {
+    -fx-stroke: #e9967a; 
+    -fx-stroke-width: 2px;
+    -fx-effect: null;
+}
+
+/* background behind the line
+.chart-series-area-fill { 
+    -fx-fill: linear-gradient(to right, white, rgba(255,255,255,0)); 
+    -fx-blend-mode: OVERLAY;
+}
+*/
