@@ -1,3 +1,5 @@
+// Erik Icket, ON4PB - 2022
+
 package common;
 
 public class Constants

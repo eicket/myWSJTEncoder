@@ -1,3 +1,5 @@
+// Erik Icket, ON4PB - 2022
+
 /* from
 https://raw.githubusercontent.com/pavel-demin/ft8d/master/ldpc_174_91_c_generator.f90
 https://github.com/rtmrtmrtmrtm/weakmon/blob/master/ft8.py

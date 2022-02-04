@@ -1,3 +1,5 @@
+// Erik Icket, ON4PB - 2022
+
 package dsp;
 
 import static common.Constants.NR_OF_SAMPLES_PER_SYMBOL_WSPR;
