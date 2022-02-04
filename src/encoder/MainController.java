@@ -52,6 +52,7 @@ public class MainController
     @FXML
     void offClicked(MouseEvent event)
     {
+        
         logger.info("Off button");
 
         if ((audioOutThread != null) || audioOutThread.isAlive())
