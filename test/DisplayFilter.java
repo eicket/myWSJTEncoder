@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 
 public class DisplayFilter extends Application
 {
-
     private final float sampleRate = 48000;
     private final int fftSize = 8192;
     private final int filterFrequency = -5000;
