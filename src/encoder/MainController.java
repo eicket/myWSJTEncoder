@@ -31,6 +31,7 @@ import javafx.util.Duration;
 
 public class MainController
 {
+    
 
     static final Logger logger = Logger.getLogger(MainController.class.getName());
 
