@@ -74,7 +74,7 @@ public class FT
 
     public double[] makeFT8Audio(int fSelected, double gain)
     {
-        // continuous phase 8-FSK, tone separation 1,4648 Hz, is done by taking one more / less sinus per symbol
+        // continuous phase 8-FSK, tone separation 6,25 Hz, is done by taking one more / less sinus per symbol
         // symbol duration : NR_OF_SAMPLES_PER_SYMBOL / 12000 = 0,16 sec with NR_OF_SAMPLES_PER_SYMBOL = 1920
         // number of sinuses per symbol = NR_OF_SAMPLES_PER_SYMBOL * fBase / sampleRate
         // 1920 samples * 1500 Hz / 12000 samples per sec = 240 sinuses 
@@ -439,9 +439,7 @@ public class FT
             }
         }
 
-        // should be : 3140652 16575246677300336026536301215 3140652 50526534145201344567440230574 3140652
-        //             3151763 16575246677300336026536301215 3151763 50526534145201344567440230574 3151763
-        //             3151763 16575246677300336026536301215 3151763 50526534145201344567440230574 3151763
+        // should be : 3140652 16575246677300336026536301215 3140652 50526534145201344567440230574 3140652       
         logger.info("symbols - MSB first : " + printArray(symbol));
 
         return symbol;
@@ -536,8 +534,6 @@ public class FT
         }
 
         // should be : 3140652 16575246677300336026536301215 3140652 50526534145201344567440230574 3140652
-        //             3151763 16575246677300336026536301215 3151763 50526534145201344567440230574 3151763
-        //             3151763 16575246677300336026536301215 3151763 50526534145201344567440230574 3151763
         logger.info("symbols - MSB first : " + printArray(symbol));
 
         return symbol;

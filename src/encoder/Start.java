@@ -20,7 +20,7 @@ public class Start extends Application
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
-        stage.setTitle("myWSJTXEncoder by ON4PB");
+        stage.setTitle("myWSJTEncoder by ON4PB");
         stage.show();
     }
 
