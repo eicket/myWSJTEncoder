@@ -3,7 +3,7 @@
 Experimental WSPR / FT4 / FT8 encoder and audio generator written in Java.  
 This encoder produces a Tone, WSPR, FT4 or FT8 message on the selected audio port. 
 
-The data encoding is faithful to the WSPR protocol specification.
+The data encoding is faithful to the WSPR protocol specification.  
 For FT4 / FT8 however, two limitations exist :
 1. The encoding is limited to free text
 2. No gaussian filtering is done after the audio symbols are produced (TBD)
@@ -20,11 +20,11 @@ The symbol duration is calculated as NR_OF_SAMPLES_PER_SYMBOL / 12000 and the to
 
 So, for each mode we have :
 
-               | NR_OF_SAMPLES_PER_SYMBOL | symbol duration | tone separation
-Tone           | 8192 => a 1 minute continuous sine wave
-WSPR           | 8192                     | 682,66 msec     | 1,465 Hz
-FT4            | 576                      | 48 msec         | 20,833 Hz
-FT8            | 1920                     | 160 msec        | 6,25 Hz
+               | NR_OF_SAMPLES_PER_SYMBOL | symbol duration | tone separation  
+Tone           | 8192 => a 1 minute continuous sine wave  
+WSPR           | 8192                     | 682,66 msec     | 1,465 Hz  
+FT4            | 576                      | 48 msec         | 20,833 Hz  
+FT8            | 1920                     | 160 msec        | 6,25 Hz  
 
 
 ## ft8code utility
