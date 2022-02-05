@@ -62,8 +62,8 @@ java --module-path "{your path to Java FX}\openjfx-15.0.1_windows-x64_bin-sdk\ja
 
 ## Some further useful reading :
 
-Encoding process, by Andy G4JNT : http://www.g4jnt.com/WSPR_Coding_Process.pdf and http://www.g4jnt.com/WSJT-X_LdpcModesCodingProcess.pdf used as a companion guide to produce this application. Thanks to Andy for this.  
 The FT4 and FT8 Communication Protocols - QEX July / August 2020 : https://physics.princeton.edu/pulsar/k1jt/FT4_FT8_QEX.pdf   
+Encoding process, by Andy G4JNT : http://www.g4jnt.com/WSPR_Coding_Process.pdf and http://www.g4jnt.com/WSJT-X_LdpcModesCodingProcess.pdf used as a companion guide to produce this application.  
 Synchronisation in FT8 : http://www.sportscliche.com/wb2fko/FT8sync.pdf  
 Costas Arrays : http://www.sportscliche.com/wb2fko/TechFest_2019_WB2FKO_revised.pdf  
 FT8 - costas arrays - video : https://www.youtube.com/watch?v=rjLhTN59Bg4  

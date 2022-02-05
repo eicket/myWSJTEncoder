@@ -35,13 +35,8 @@ public class PropertiesWrapper
 
     public void reset()
     {
-        prop.clear();
-        setProperty("ReceivedAudioIn", "Line 7 (Virtual Audio Cable)");
-        //  setProperty("ReceivedAudioOut", "White Speakers (USB Audio Device)");
-        setProperty("ReceivedAudioOut", "SMS23A350H (High Definition Audio Device)");
-        setProperty("YAxisHigh", "50000");
-        setProperty("waterfallLow", "0");
-        setProperty("waterfallHigh", "2000");
+        prop.clear();        
+        setProperty("ReceivedAudioOut", "SMS23A350H (High Definition Audio Device)");      
     }
 
     public void setProperty(String name, String value)
