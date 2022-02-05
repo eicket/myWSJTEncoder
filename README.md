@@ -23,11 +23,12 @@ The symbol duration is calculated as NR_OF_SAMPLES_PER_SYMBOL / 12000 and the to
 
 So, for each mode we have :
 
-Mode | NR_OF_SAMPLES_PER_SYMBOL | symbol duration | tone separation  
-WSPR | 8192                     | 682,66 msec     | 1,465 Hz  
-FT4  | 576                      | 48 msec         | 20,833 Hz  
-FT8  | 1920                     | 160 msec        | 6,25 Hz  
-Tone | 8192 => a 1 minute continuous sine wave  
+| Mode | NR_OF_SAMPLES_PER_SYMBOL | symbol duration | tone separation  
+| ---- | ---- | ---- | ---- |
+| WSPR | 8192 | 682,66 msec     | 1,465 Hz  |
+| FT4 | 576 | 48 msec         | 20,833 Hz  |
+| FT8 | 1920 | 160 msec        | 6,25 Hz  |
+| Tone | 8192 => a 1 minute continuous sine wave  
 
 
 ## ft8code utility
