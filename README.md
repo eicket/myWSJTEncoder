@@ -3,6 +3,8 @@
 Experimental WSPR / FT4 / FT8 encoder and audio generator written in Java.  
 This encoder produces a Tone, WSPR, FT4 or FT8 message on the selected audio port. 
 
+![Alt text](/Screenshot.jpg)
+
 The data encoding is faithful to the WSPR protocol specification.  
 For FT4 / FT8 however, two limitations exist :
 1. The encoding is limited to free text
