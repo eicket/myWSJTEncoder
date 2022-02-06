@@ -42,6 +42,7 @@ Some comments in my code, refer to the output of this utility for a free text me
 ## Java environment
 
 This java application runs on all recent Java versions and was tested on Java 1.8, 15 and 17.
+The app is developed with NetBeans 12.6 and the project properties can be found in the nbproject folder.
 
 For all audio processing, the app uses the native javax library. So no external libraries, dll's .. are required.
 
@@ -64,7 +65,8 @@ java --module-path "{your path to Java FX}\openjfx-15.0.1_windows-x64_bin-sdk\ja
 ## Some further useful reading :
 
 The FT4 and FT8 Communication Protocols - QEX July / August 2020 : https://physics.princeton.edu/pulsar/k1jt/FT4_FT8_QEX.pdf   
-Encoding process, by Andy G4JNT : http://www.g4jnt.com/WSPR_Coding_Process.pdf and http://www.g4jnt.com/WSJT-X_LdpcModesCodingProcess.pdf used as a companion guide to produce this application.  
+
+Encoding process, by Andy G4JNT : http://www.g4jnt.com/WSPR_Coding_Process.pdf and http://www.g4jnt.com/WSJT-X_LdpcModesCodingProcess.pdf  
 Synchronisation in FT8 : http://www.sportscliche.com/wb2fko/FT8sync.pdf  
 Costas Arrays : http://www.sportscliche.com/wb2fko/TechFest_2019_WB2FKO_revised.pdf  
 FT8 - costas arrays - video : https://www.youtube.com/watch?v=rjLhTN59Bg4  
