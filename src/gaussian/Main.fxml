@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="500.0" prefWidth="1050.0" stylesheets="@Chart.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gaussian.MainController">
+    <children>     
+        <LineChart fx:id="lineChart" layoutX="20.0" layoutY="20.0" legendVisible="false" prefHeight="400.0" prefWidth="1000.0" stylesheets="@Chart.css">
+            <xAxis>
+                <NumberAxis autoRanging="false" label="t/T : normalized time" lowerBound="-1.0" minorTickCount="1" minorTickLength="0.0" prefWidth="900.0" side="BOTTOM" tickLabelGap="0.0" tickLength="0.0" tickUnit="0.1" upperBound="1.0" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis autoRanging="false" label="p(t) : frequency deviation" minorTickCount="10" minorTickLength="2.0" minorTickVisible="false" side="LEFT" tickLabelGap="0.0" tickLength="0.0" tickUnit="0.1" upperBound="1.2" />
+            </yAxis>
+        </LineChart>
+    </children>
+</AnchorPane>
