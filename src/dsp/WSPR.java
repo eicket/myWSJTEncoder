@@ -1,14 +1,12 @@
 // Erik Icket, ON4PB - 2022
-
 package dsp;
 
 import static common.Constants.NR_OF_SAMPLES_PER_SYMBOL_WSPR;
 import static common.Constants.SAMPLE_RATE;
-import static java.lang.Math.round;
 import java.util.Arrays;
 import java.util.logging.Logger;
-import static dsp.Utils.makeAudioSymbols;
 import static dsp.Utils.printArray;
+import gaussian.makeWaveform;
 
 public class WSPR
 {
@@ -21,57 +19,17 @@ public class WSPR
 
     static final Logger logger = Logger.getLogger(WSPR.class.getName());
 
-    // set when button is clicked, with input from the text field
-    public String message;
-
-    public double[] makeAudio(int fSelected, double gain)
+    public double[] makeWSPR(int fBase, String message, double gain)
     {
-        double[] symbol0;
-        double[] symbol1;
-        double[] symbol2;
-        double[] symbol3;
-
-        int nrOfSinusesPerSymbol = (int) round((double) NR_OF_SAMPLES_PER_SYMBOL_WSPR * fSelected / SAMPLE_RATE);
-        logger.info("starting number of sinuses per symbol : " + nrOfSinusesPerSymbol);
-
-        symbol0 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_WSPR);
-        nrOfSinusesPerSymbol++;
-        symbol1 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_WSPR);
-        nrOfSinusesPerSymbol++;
-        symbol2 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_WSPR);
-        nrOfSinusesPerSymbol++;
-        symbol3 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_WSPR);
-
         // 162 bytes are encoded, 1 symbol per byte
         // each wsprSymbols byte contains a byte with the symbol, symbol values are 0,1,2,3 
         byte[] symbols = encode(message);
 
-        // dBufferOut size is 1.327.104 doubles
-        double[] dBufferOut = new double[symbols.length * NR_OF_SAMPLES_PER_SYMBOL_WSPR];
-        int iBufferOut = 0;
-        for (int i = 0; i < symbols.length; i++)
-        {
-            for (int j = 0; j < NR_OF_SAMPLES_PER_SYMBOL_WSPR; j++)
-            {
-                switch (symbols[i])
-                {
-                    case 0:
-                        dBufferOut[iBufferOut + j] = symbol0[j];
-                        break;
-                    case 1:
-                        dBufferOut[iBufferOut + j] = symbol1[j];
-                        break;
-                    case 2:
-                        dBufferOut[iBufferOut + j] = symbol2[j];
-                        break;
-                    case 3:
-                        dBufferOut[iBufferOut + j] = symbol3[j];
-                        break;
-                }
-            }
-            iBufferOut = iBufferOut + NR_OF_SAMPLES_PER_SYMBOL_WSPR;
-        }
-        return dBufferOut;
+        // size is 1.327.104 doubles       
+        //   double[] audio = new double[symbols.length * NR_OF_SAMPLES_PER_SYMBOL_WSPR];
+        // returns symbols.length * NR_OF_SAMPLES_PER_SYMBOL_WSPR
+        double[] audio = makeWaveform.synthesizeWithoutGFSK(symbols, fBase, NR_OF_SAMPLES_PER_SYMBOL_WSPR, SAMPLE_RATE, gain);
+        return audio;
     }
 
     // returns 162 bytes, 1 symbol per byte
@@ -376,5 +334,5 @@ public class WSPR
             3, 2, 3, 3, 2, 0, 0, 3, 1, 2, 2, 2
         };
         return b;
-    }    
+    }
 }

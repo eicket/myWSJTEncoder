@@ -1,6 +1,7 @@
 // Erik Icket, ON4PB - 2022
-package gaussian;
+package test.displayFrequencyDeviation;
 
+import test.displayERF.*;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;

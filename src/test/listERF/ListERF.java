@@ -1,12 +1,12 @@
-package gaussian;
+package test.listERF;
 
 import static test.gaussian.ErrorFunction.erf;
 import java.util.logging.Logger;
 
-public class TestERF
+public class ListERF
 {
 
-    static final Logger logger = Logger.getLogger(gaussian.TestERF.class.getName());
+    static final Logger logger = Logger.getLogger(test.listERF.ListERF.class.getName());
 
     public static void main(String argv[])
     {

@@ -4,7 +4,7 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="500.0" prefWidth="1050.0" stylesheets="@Chart.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gaussian.MainController">
+<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="500.0" prefWidth="1050.0" stylesheets="@Chart.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.displayERF.MainController">
     <children>     
         <LineChart fx:id="lineChart" layoutX="20.0" layoutY="20.0" legendVisible="false" prefHeight="400.0" prefWidth="1000.0" stylesheets="@Chart.css">
             <xAxis>

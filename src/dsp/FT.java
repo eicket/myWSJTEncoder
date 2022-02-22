@@ -1,14 +1,14 @@
 // Erik Icket, ON4PB - 2022
-
 package dsp;
 
+import static common.Constants.FT4_SYMBOL_BT;
+import static common.Constants.FT8_SYMBOL_BT;
 import static common.Constants.NR_OF_SAMPLES_PER_SYMBOL_FT4;
 import static common.Constants.NR_OF_SAMPLES_PER_SYMBOL_FT8;
 import static common.Constants.SAMPLE_RATE;
-import static dsp.Utils.makeAudioSymbols;
 import static dsp.Utils.printArray;
 import static dsp.Utils.reverseByteArray;
-import static java.lang.Math.round;
+import gaussian.makeWaveform;
 import java.math.BigInteger;
 import java.util.BitSet;
 import java.util.logging.Logger;
@@ -18,12 +18,9 @@ public class FT
 
     static final Logger logger = Logger.getLogger(FT.class.getName());
 
-    // set when button is clicked, with input from the text field
-    public String message;
-
-    public double[] makeFT4Audio(int fSelected, double gain)
+    public double[] makeFT4(int fBase, String message, double gain)
     {
-        // continuous phase 4-FSK, tone separation 20,833 Hz, is done by taking one more / less sinus per symbol
+        // continuous phase 4-FSK, tone separation 20,833 Hz, is done by taking one more / less sinus per symbol for a modulation index of 1
         // symbol duration : NR_OF_SAMPLES_PER_SYMBOL / 12000 = 0,048 sec with NR_OF_SAMPLES_PER_SYMBOL = 576
         // number of sinuses per symbol = NR_OF_SAMPLES_PER_SYMBOL * fBase / sampleRate
         // 576 samples * 1500 Hz / 12000 samples per sec = 72 sinuses 
@@ -34,47 +31,14 @@ public class FT
         byte[] symbols = makeFT4Symbols(bigCodeWord174);
         reverseByteArray(symbols);
 
-        int nrOfSinusesPerSymbol = (int) round((double) NR_OF_SAMPLES_PER_SYMBOL_FT4 * fSelected / SAMPLE_RATE);
-        logger.fine("starting number of sinuses per symbol : " + nrOfSinusesPerSymbol);
-
-        double[] symbol0 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_FT4);
-        nrOfSinusesPerSymbol++;
-        double[] symbol1 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_FT4);
-        nrOfSinusesPerSymbol++;
-        double[] symbol2 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_FT4);
-        nrOfSinusesPerSymbol++;
-        double[] symbol3 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_FT4);
-
-        double[] dBufferOut = new double[symbols.length * NR_OF_SAMPLES_PER_SYMBOL_FT4];
-        int iBufferOut = 0;
-        for (int i = 0; i < symbols.length; i++)
-        {
-            for (int j = 0; j < NR_OF_SAMPLES_PER_SYMBOL_FT4; j++)
-            {
-                switch (symbols[i])
-                {
-                    case 0:
-                        dBufferOut[iBufferOut + j] = symbol0[j];
-                        break;
-                    case 1:
-                        dBufferOut[iBufferOut + j] = symbol1[j];
-                        break;
-                    case 2:
-                        dBufferOut[iBufferOut + j] = symbol2[j];
-                        break;
-                    case 3:
-                        dBufferOut[iBufferOut + j] = symbol3[j];
-                        break;
-                }
-            }
-            iBufferOut = iBufferOut + NR_OF_SAMPLES_PER_SYMBOL_FT4;
-        }
-        return dBufferOut;
+        // returns symbols.length * NR_OF_SAMPLES_PER_SYMBOL_FT4
+        double[] audio = makeWaveform.synthesizeWithGFSK(symbols, fBase, FT4_SYMBOL_BT, NR_OF_SAMPLES_PER_SYMBOL_FT4, SAMPLE_RATE, gain);
+        return audio;
     }
 
-    public double[] makeFT8Audio(int fSelected, double gain)
+    public double[] makeFT8(int fBase, String message, double gain)
     {
-        // continuous phase 8-FSK, tone separation 6,25 Hz, is done by taking one more / less sinus per symbol
+        // continuous phase 8-FSK, tone separation 6,25 Hz, is done by taking one more / less sinus per symbol for a modulation index of 1
         // symbol duration : NR_OF_SAMPLES_PER_SYMBOL / 12000 = 0,16 sec with NR_OF_SAMPLES_PER_SYMBOL = 1920
         // number of sinuses per symbol = NR_OF_SAMPLES_PER_SYMBOL * fBase / sampleRate
         // 1920 samples * 1500 Hz / 12000 samples per sec = 240 sinuses 
@@ -85,62 +49,9 @@ public class FT
         byte[] symbols = makeFT8Symbols(bigCodeWord174);
         reverseByteArray(symbols);
 
-        int nrOfSinusesPerSymbol = (int) round((double) NR_OF_SAMPLES_PER_SYMBOL_FT8 * fSelected / SAMPLE_RATE);
-        logger.fine("starting number of sinuses per symbol : " + nrOfSinusesPerSymbol);
-
-        double[] symbol0 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_FT8);
-        nrOfSinusesPerSymbol++;
-        double[] symbol1 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_FT8);
-        nrOfSinusesPerSymbol++;
-        double[] symbol2 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_FT8);
-        nrOfSinusesPerSymbol++;
-        double[] symbol3 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_FT8);
-        nrOfSinusesPerSymbol++;
-        double[] symbol4 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_FT8);
-        nrOfSinusesPerSymbol++;
-        double[] symbol5 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_FT8);
-        nrOfSinusesPerSymbol++;
-        double[] symbol6 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_FT8);
-        nrOfSinusesPerSymbol++;
-        double[] symbol7 = makeAudioSymbols(nrOfSinusesPerSymbol, gain, NR_OF_SAMPLES_PER_SYMBOL_FT8);
-
-        double[] dBufferOut = new double[symbols.length * NR_OF_SAMPLES_PER_SYMBOL_FT8];
-        int iBufferOut = 0;
-        for (int i = 0; i < symbols.length; i++)
-        {
-            for (int j = 0; j < NR_OF_SAMPLES_PER_SYMBOL_FT8; j++)
-            {
-                switch (symbols[i])
-                {
-                    case 0:
-                        dBufferOut[iBufferOut + j] = symbol0[j];
-                        break;
-                    case 1:
-                        dBufferOut[iBufferOut + j] = symbol1[j];
-                        break;
-                    case 2:
-                        dBufferOut[iBufferOut + j] = symbol2[j];
-                        break;
-                    case 3:
-                        dBufferOut[iBufferOut + j] = symbol3[j];
-                        break;
-                    case 4:
-                        dBufferOut[iBufferOut + j] = symbol4[j];
-                        break;
-                    case 5:
-                        dBufferOut[iBufferOut + j] = symbol5[j];
-                        break;
-                    case 6:
-                        dBufferOut[iBufferOut + j] = symbol6[j];
-                        break;
-                    case 7:
-                        dBufferOut[iBufferOut + j] = symbol7[j];
-                        break;
-                }
-            }
-            iBufferOut = iBufferOut + NR_OF_SAMPLES_PER_SYMBOL_FT8;
-        }
-        return dBufferOut;
+        // returns symbols.length * NR_OF_SAMPLES_PER_SYMBOL_FT8
+        double[] audio = makeWaveform.synthesizeWithGFSK(symbols, fBase, FT8_SYMBOL_BT, NR_OF_SAMPLES_PER_SYMBOL_FT8, SAMPLE_RATE, gain);
+        return audio;
     }
 
     // returns 79 bytes, 1 symbol per byte
@@ -189,13 +100,13 @@ public class FT
         logger.info("Source-encoded message, 77 bits : " + dumpBigInteger(bigSource77, 77));
         /* must be :
         00110110011110001111010110111111101000000001001010100001110110001010101000000
-        */
+         */
 
         if (scramble)
         {
             // scramble, only for FT4
             logger.fine("Before scramble, 77 bits   : " + dumpBigInteger(bigSource77, 77));
-            
+
             BigInteger bigScramblingVector = StringToBigInteger("01001010010111101000100110110100101100001000101001111001010101011011111000101");
             logger.fine("Scrambling vect, 77 bits   : " + dumpBigInteger(bigScramblingVector, 77));
 
@@ -327,7 +238,7 @@ public class FT
 
         /* should be :
         00100011101100010110001110100011000001010110110100101111110110000011010000100111110            
-        */
+         */
         logger.fine("83 Parity bits : " + dumpBitSet(bsParityBits, 83));
 
         // make the codeword
@@ -458,7 +369,7 @@ public class FT
 
         index i   71-43                 35-7 -> index in symbols
         index j  173-87                 86-0 -> index in code word
-        */
+         */
         byte[] symbol = new byte[79];
         for (int i = 0; i < 79; i++)
         {
@@ -654,7 +565,7 @@ public class FT
             dump = dump + c;
         }
         return dump;
-    }    
+    }
 
     // highest index comes first
     private String dumpBitSet(BitSet bs, int nrOfBits)
@@ -690,8 +601,7 @@ public class FT
         }
         return bitset;
     }
-*/
-
+     */
     // fist char in string is the MSB in the BigInteger
     // !! bigInteger is immutable -- so, re-assign !
     private BigInteger StringToBigInteger(String binary)
@@ -708,7 +618,7 @@ public class FT
             {
                 bigInteger = bigInteger.setBit(binary.length() - 1 - i);
                 logger.fine(binary.length() - 1 - i + " set");
-            }          
+            }
         }
 
         logger.fine("After conversion77 bits    : " + dumpBigInteger(bigInteger, 77));
@@ -776,5 +686,5 @@ public class FT
 
         logger.severe("in graycode");
         return 0;
-    }   
+    }
 }

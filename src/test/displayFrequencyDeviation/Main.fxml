@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+
+<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="500.0" prefWidth="1050.0" stylesheets="@Chart.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="test.displayFrequencyDeviation.MainController">
+    <children>     
+        <LineChart fx:id="lineChart" layoutX="20.0" layoutY="20.0" legendVisible="false" prefHeight="400.0" prefWidth="1000.0" stylesheets="@Chart.css">
+            <xAxis>
+                <NumberAxis autoRanging="false" label="t" minorTickCount="10" minorTickLength="500.0" minorTickVisible="false" prefWidth="900.0" side="BOTTOM" tickLength="0.0" tickMarkVisible="false" tickUnit="1000.0" upperBound="15000.0">
+               <tickLabelFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </tickLabelFill></NumberAxis>
+            </xAxis>
+            <yAxis>
+                <NumberAxis autoRanging="false" label="frequency deviation" minorTickCount="100" minorTickVisible="false" side="LEFT" tickUnit="10.0" />
+            </yAxis>
+        </LineChart>
+    </children>
+</AnchorPane>

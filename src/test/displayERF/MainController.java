@@ -1,5 +1,5 @@
 // Erik Icket, ON4PB - 2022
-package gaussian;
+package test.displayERF;
 
 import common.Constants;
 import static common.Constants.NR_OF_SAMPLES_PER_SYMBOL_FT8;

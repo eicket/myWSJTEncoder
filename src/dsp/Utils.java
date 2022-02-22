@@ -11,6 +11,7 @@ public class Utils
 
     static final Logger logger = Logger.getLogger(Utils.class.getName());
 
+    /*
     public static double baseFreq(int fSelected, int nrOfSamplesPerSymbol)
     {
         long nrOfSinusesPerSymbol = round((double) nrOfSamplesPerSymbol * fSelected / SAMPLE_RATE);
@@ -19,7 +20,7 @@ public class Utils
 
         return dBaseFreq;
     }
-
+*/
     public static double[] makeAudioSymbols(int nrOfSinusesPerSymbol, double gain, int nrOfSamplesPerSymbol)
     {
         double[] symbol = new double[nrOfSamplesPerSymbol];

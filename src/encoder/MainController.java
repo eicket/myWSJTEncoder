@@ -1,17 +1,12 @@
 // Erik Icket, ON4PB - 2022
-
 package encoder;
 
 import dsp.WSPR;
 import audio.AudioOut;
 import audio.AudioOutThread;
-import static common.Constants.NR_OF_SAMPLES_PER_SYMBOL_FT4;
-import static common.Constants.NR_OF_SAMPLES_PER_SYMBOL_FT8;
-import static common.Constants.NR_OF_SAMPLES_PER_SYMBOL_WSPR;
 import common.PropertiesWrapper;
 import dsp.FT;
 import dsp.Tone;
-import dsp.Utils;
 import java.util.logging.Logger;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -33,14 +28,12 @@ import javafx.util.Duration;
 
 public class MainController
 {
-    
 
     static final Logger logger = Logger.getLogger(MainController.class.getName());
 
     private PropertiesWrapper propWrapper = new PropertiesWrapper();
 
-    private int fSelected = 1500;
-    private double fBase = 0;
+    private int fBase = 1500;
     private double gain = 0;
 
     private Tone tone = new Tone();
@@ -55,7 +48,7 @@ public class MainController
     @FXML
     void offClicked(MouseEvent event)
     {
-        
+
         logger.info("Off button");
 
         if ((audioOutThread != null) || audioOutThread.isAlive())
@@ -92,7 +85,7 @@ public class MainController
 
         long startAt = 0;
 
-        audioOutThread = new AudioOutThread(audioOutBox.getValue(), tone.makeAudio(fSelected, gain), startAt);
+        audioOutThread = new AudioOutThread(audioOutBox.getValue(), tone.makeTone(fBase, gain), startAt);
         audioOutThread.start();
     }
 
@@ -108,9 +101,8 @@ public class MainController
         propWrapper.setProperty("ReceivedAudioOut", audioOutBox.getValue());
         logger.info("Audio out : " + audioOutBox.getValue());
 
-        fBase = Utils.baseFreq(fSelected, NR_OF_SAMPLES_PER_SYMBOL_WSPR);
-        baseFrequencyLabel.setText("base f : " + Double.toString(fBase));
-
+        //  fBase = Utils.baseFreq(fBase, NR_OF_SAMPLES_PER_SYMBOL_WSPR);
+        // baseFrequencyLabel.setText("base f : " + Double.toString(fBase));
         long startAt = 0;
 
         long now = System.currentTimeMillis();
@@ -119,7 +111,7 @@ public class MainController
         startAt = now + wait;
         logger.fine("Wait : " + wait);
 
-        audioOutThread = new AudioOutThread(audioOutBox.getValue(), wspr.makeAudio(fSelected, gain), startAt);
+        audioOutThread = new AudioOutThread(audioOutBox.getValue(), wspr.makeWSPR(fBase, wsprMessageField.getText(), gain), startAt);
         audioOutThread.start();
     }
 
@@ -134,9 +126,6 @@ public class MainController
         propWrapper.setProperty("ReceivedAudioOut", audioOutBox.getValue());
         logger.info("Audio out : " + audioOutBox.getValue());
 
-        fBase = Utils.baseFreq(fSelected, NR_OF_SAMPLES_PER_SYMBOL_FT4);
-        baseFrequencyLabel.setText("base f : " + Double.toString(fBase));
-
         long startAt = 0;
 
         long now = System.currentTimeMillis();
@@ -145,7 +134,7 @@ public class MainController
         startAt = now + wait;
         logger.fine("Wait : " + wait);
 
-        audioOutThread = new AudioOutThread(audioOutBox.getValue(), ft.makeFT4Audio(fSelected, gain), startAt);
+        audioOutThread = new AudioOutThread(audioOutBox.getValue(), ft.makeFT4(fBase, ftMessageField.getText(), gain), startAt);
         audioOutThread.start();
     }
 
@@ -160,9 +149,6 @@ public class MainController
         propWrapper.setProperty("ReceivedAudioOut", audioOutBox.getValue());
         logger.info("Audio out : " + audioOutBox.getValue());
 
-        fBase = Utils.baseFreq(fSelected, NR_OF_SAMPLES_PER_SYMBOL_FT8);
-        baseFrequencyLabel.setText("base f : " + Double.toString(fBase));
-
         long startAt = 0;
 
         long now = System.currentTimeMillis();
@@ -171,7 +157,7 @@ public class MainController
         startAt = now + wait;
         logger.fine("Wait : " + wait);
 
-        audioOutThread = new AudioOutThread(audioOutBox.getValue(), ft.makeFT8Audio(fSelected, gain), startAt);
+        audioOutThread = new AudioOutThread(audioOutBox.getValue(), ft.makeFT8(fBase, ftMessageField.getText(), gain), startAt);
         audioOutThread.start();
     }
 
@@ -188,7 +174,7 @@ public class MainController
         {
             try
             {
-                fSelected = Integer.parseInt(fSelectedField.getText());
+                fBase = Integer.parseInt(fSelectedField.getText());
             }
             catch (NumberFormatException e2)
             {
@@ -196,7 +182,7 @@ public class MainController
                 return;
             }
 
-            logger.info("fSelected set to : " + fSelected);
+            logger.info("fSelected set to : " + fBase);
         }
     }
 
@@ -208,15 +194,15 @@ public class MainController
         logger.fine("fBase scroll : " + event.getDeltaY());
         if (event.getDeltaY() > 0)
         {
-            fSelected = fSelected + fScroll;
+            fBase = fBase + fScroll;
         }
         else
         {
-            fSelected = fSelected - fScroll;
+            fBase = fBase - fScroll;
         }
-        fSelectedField.setText(Integer.toString(fSelected));
+        fSelectedField.setText(Integer.toString(fBase));
 
-        logger.info("fSelected set to : " + fSelected);
+        logger.info("fSelected set to : " + fBase);
     }
     @FXML
     private Label baseFrequencyLabel;
@@ -224,6 +210,7 @@ public class MainController
     @FXML
     private TextField wsprMessageField;
 
+    /*
     @FXML
     void wsprMessageFieldKeyPressed(KeyEvent event)
     {
@@ -233,10 +220,10 @@ public class MainController
             logger.info("wsprMessage set to : " + wspr.message);
         }
     }
-
+     */
     @FXML
     private TextField ftMessageField;
-
+    /*
     @FXML
     void ftMessageFieldKeyPressed(KeyEvent event)
     {
@@ -246,6 +233,7 @@ public class MainController
             logger.info("ftMessage set to : " + ft.message);
         }
     }
+     */
 
     @FXML
     private Slider gainSlider;
@@ -258,16 +246,14 @@ public class MainController
     {
         AudioOut.ListAudioOut(audioOutBox);
 
-        fSelectedField.setText(Integer.toString(fSelected));
+        fSelectedField.setText(Integer.toString(fBase));
         gainSlider.setTooltip(new Tooltip("dB"));
 
-        fBase = Utils.baseFreq(fSelected, NR_OF_SAMPLES_PER_SYMBOL_WSPR);
-        baseFrequencyLabel.setText("base f : " + Double.toString(fBase));
         wsprMessageField.setText("ON4PB JO20 30");
-        wspr.message = wsprMessageField.getText();
+        //      wspr.message = wsprMessageField.getText();
 
         ftMessageField.setText("FREE FRE FREE");
-        ft.message = ftMessageField.getText();
+        //    ft.message = ftMessageField.getText();
 
         timeline = new Timeline();
 
