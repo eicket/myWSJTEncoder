@@ -87,7 +87,7 @@ public class AudioOutThread extends Thread
         }
         sourceDataLine.start();
 
-        logger.info("Audio starts : " + sourceDataLine.isOpen());
+        logger.fine("Audio sourceDataLine started : " + sourceDataLine.isOpen());
 
         this.startAt = startAt;
 
