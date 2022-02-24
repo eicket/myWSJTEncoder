@@ -34,15 +34,22 @@ So, for each mode we have :
 
 As per the protocol definition, all modes use a continuous phase frequency shift keying.
 
-FT4/FT8 frequency deviations are smoothed with a Gaussian filter. WSPR uses a rectangular frequency-deviation pulse.
+FT4/FT8 frequency deviations are smoothed with a Gaussian filter. 
 A single Gaussian smoothed frequency deviation pulse is created according to equation (3) in [1] and then superposed on each symbol. 
 The length of the pulse is limited to a window of 3 symbols and is superposed on the previous, current and next symbol.
 The frequency deviation, calculated as a phase angle, is calculated per sample with a raised-cosine ramp applied to the first and last symbol.
 
-The Gaussian-smoothed frequency deviation pulse has the following shape :
+The Gaussian-smoothed frequency deviation pulse has the following shape for a FT4, FT8 and a rectangular frequency deviation pulse :
 
 ![Alt text](/screenshots/Pulse.jpg)
 
+The effect of the FT4 frequency deviation smoothing (BT=1) can be clearly observed, compared to a rectangular frequency deviation :
+
+![Alt text](/screenshots/FT4_frequency_deviation.jpg)
+
+As for FT8, a milder smoothing is applied (BT-2) :
+
+![Alt text](/screenshots/FT8_frequency_deviation.jpg)
 
 
 ## ft8code utility
