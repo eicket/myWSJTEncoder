@@ -4,7 +4,7 @@ Experimental WSPR / FT4 / FT8 encoder and audio generator written in Java.
 
 This encoder produces a Tone, WSPR, FT4 or FT8 message on the selected audio port. 
 
-![Alt text](/Encoder.jpg)
+![Alt text](/screenshots/Encoder.jpg)
 
 For WSPR, the encoding is faithful to the WSPR protocol specification.  
 For FT4 / FT8 however, the encoding is limited to a "Free Text" message type (Type 0.0). 
@@ -36,11 +36,12 @@ As per the protocol definition, all modes use a continuous phase frequency shift
 
 FT4/FT8 frequency deviations are smoothed with a Gaussian filter. WSPR uses a rectangular frequency-deviation pulse.
 A single Gaussian smoothed frequency deviation pulse is created according to equation (3) in [1] and then superposed on each symbol. 
-The length of the pulse is limited to 3 symbols and is superposed on the previous, current and next symbol, as the calculation of the frequency deviation for the message progresses .
+The length of the pulse is limited to a window of 3 symbols and is superposed on the previous, current and next symbol.
+The frequency deviation, calculated as a phase angle, is calculated per sample with a raised-cosine ramp applied to the first and last symbol.
 
 The Gaussian-smoothed frequency deviation pulse has the following shape :
 
-![Alt text](/Pulse.jpg)
+![Alt text](/screenshots/Pulse.jpg)
 
 
 
