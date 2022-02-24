@@ -83,8 +83,10 @@ javafx.swing.jar
 javafx.web.jar  
 as well as charm-glisten-6.0.6.jar  
 
-And finally, the app can be started up as follows  
-java --module-path "{your path to Java FX}\openjfx-15.0.1_windows-x64_bin-sdk\javafx-sdk-15.0.1\lib" --add-modules javafx.controls,javafx.fxml -Djava.util.logging.config.file=console_logging.properties
+The Java app can be started up as follows :
+java --module-path "{your path to Java FX}\openjfx-15.0.1_windows-x64_bin-sdk\javafx-sdk-15.0.1\lib" --add-modules javafx.controls,javafx.fxml -Djava.util.logging.config.file=console_logging.properties -jar "dist\myWSJTEncoder.jar"
+
+Two more Java apps are provided to display the Gaussian smoothed pulse and the Frequency deviation per mode.
 
 ## Some further useful reading :
 
@@ -94,9 +96,14 @@ java --module-path "{your path to Java FX}\openjfx-15.0.1_windows-x64_bin-sdk\ja
 [4] Costas Arrays : http://www.sportscliche.com/wb2fko/TechFest_2019_WB2FKO_revised.pdf  
 [5] FT8 - costas arrays - video : https://www.youtube.com/watch?v=rjLhTN59Bg4  
 
-## Credits
+## Copyright notice and credits
 
-And finally, all credits for bringing the WSJT modes to the ham radio community goes to K1JT, Joe Taylor, and the WSJTX development team. Without their work, we would even not dream about weak signals and their processing.
+The algorithms, source code, look-and-feel of WSJT-X and related programs, and protocol specifications for the modes FSK441, FT4, FT8, JT4, JT6M, JT9, JT65, JTMS, QRA64, ISCAT, and MSK144 
+are Copyright © 2001-2020 by one or more of the following authors: Joseph Taylor, K1JT; Bill Somerville, G4WJS; Steven Franke, K9AN; Nico Palermo, IV3NWV; Greg Beam, KI7MT; Michael Black, W9MDB; 
+Edson Pereira, PY2SDR; Philip Karn, KA9Q; and other members of the WSJT Development Group.
+
+All credits to K1JT, Joe Taylor, and the WSJTX development team. Without their work, we would even not dream about weak signals and their processing !
+
 
 Give it a try and 73's  
 Erik  
