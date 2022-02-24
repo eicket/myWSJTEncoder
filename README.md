@@ -7,9 +7,8 @@ This encoder produces a Tone, WSPR, FT4 or FT8 message on the selected audio por
 ![Alt text](/Encoder.jpg)
 
 For WSPR, the encoding is faithful to the WSPR protocol specification.  
-For FT4 / FT8 however, two limitations exist :
-1. The encoding is limited to free text
-2. No gaussian filtering is done after the audio symbols are generated (TBD)
+For FT4 / FT8 however, the encoding is limited to a "Free Text" message type (Type 0.0). 
+
 
 ## Some implementation details 
 
@@ -29,6 +28,20 @@ So, for each mode we have :
 | FT4 | 576 | 48 msec         | 20,833 Hz  |
 | FT8 | 1920 | 160 msec        | 6,25 Hz  |
 | Tone | 8192 => a 1 minute continuous sine wave  
+
+
+## Gaussian smoothing (FT4/FT8)
+
+As per the protocol definition, all modes use a continuous phase frequency shift keying.
+
+FT4/FT8 frequency deviations are smoothed with a Gaussian filter. WSPR uses a rectangular frequency-deviation pulse.
+A single Gaussian smoothed frequency deviation pulse is created according to equation (3) in [1] and then superposed on each symbol. 
+The length of the pulse is limited to the length of 3 symbols and is superposed on the previous, current and next symbol, as the calculation of the frequency deviation for the message progresses .
+
+The Gaussian-smoothed frequency deviation pulse has the following shape :
+
+![Alt text](/Pulse.jpg)
+
 
 
 ## ft8code utility
@@ -64,12 +77,11 @@ java --module-path "{your path to Java FX}\openjfx-15.0.1_windows-x64_bin-sdk\ja
 
 ## Some further useful reading :
 
-The FT4 and FT8 Communication Protocols - QEX July / August 2020 : https://physics.princeton.edu/pulsar/k1jt/FT4_FT8_QEX.pdf   
-
-Encoding process, by Andy G4JNT : http://www.g4jnt.com/WSPR_Coding_Process.pdf and http://www.g4jnt.com/WSJT-X_LdpcModesCodingProcess.pdf  
-Synchronisation in FT8 : http://www.sportscliche.com/wb2fko/FT8sync.pdf  
-Costas Arrays : http://www.sportscliche.com/wb2fko/TechFest_2019_WB2FKO_revised.pdf  
-FT8 - costas arrays - video : https://www.youtube.com/watch?v=rjLhTN59Bg4  
+[1] The FT4 and FT8 Communication Protocols - QEX July / August 2020 : https://physics.princeton.edu/pulsar/k1jt/FT4_FT8_QEX.pdf   
+[2]Encoding process, by Andy G4JNT : http://www.g4jnt.com/WSPR_Coding_Process.pdf and http://www.g4jnt.com/WSJT-X_LdpcModesCodingProcess.pdf  
+[3] Synchronisation in FT8 : http://www.sportscliche.com/wb2fko/FT8sync.pdf  
+[4] Costas Arrays : http://www.sportscliche.com/wb2fko/TechFest_2019_WB2FKO_revised.pdf  
+[5] FT8 - costas arrays - video : https://www.youtube.com/watch?v=rjLhTN59Bg4  
 
 ## Credits
 
