@@ -57,11 +57,11 @@ The above diagram shows frequency deviations for symbols :  0, 1, 2, 2, 3, 4, 5,
 
 ## ft8code utility
 
-For FT8, the source-encoded message, 14-bit CRC, parity bits and channel symbols can te verified with the excellent FT8code.exe tool, packaged with the WSJTX app :
+For FT8, the source-encoded message, 14-bit CRC, parity bits and channel symbols can be verified with the excellent FT8code.exe tool, packaged with the WSJTX app :
 
 C:\WSJT\wsjtx\bin>ft8code "FREE FRE FREE"
 
-Some comments in my code, refer to the output of this utility for a free text message with contents "FREE FRE FREE"
+Some comments in the code, refer to the output of this utility for a free text message with contents "FREE FRE FREE"
 
 ## Java environment
 
@@ -91,7 +91,7 @@ Two more Java apps are provided to display the Gaussian smoothed pulse and the F
 ## Some further useful reading :
 
 [1] The FT4 and FT8 Communication Protocols - QEX July / August 2020 : https://physics.princeton.edu/pulsar/k1jt/FT4_FT8_QEX.pdf   
-[2]Encoding process, by Andy G4JNT : http://www.g4jnt.com/WSPR_Coding_Process.pdf and http://www.g4jnt.com/WSJT-X_LdpcModesCodingProcess.pdf  
+[2] Encoding process, by Andy G4JNT : http://www.g4jnt.com/WSPR_Coding_Process.pdf and http://www.g4jnt.com/WSJT-X_LdpcModesCodingProcess.pdf  
 [3] Synchronisation in FT8 : http://www.sportscliche.com/wb2fko/FT8sync.pdf  
 [4] Costas Arrays : http://www.sportscliche.com/wb2fko/TechFest_2019_WB2FKO_revised.pdf  
 [5] FT8 - costas arrays - video : https://www.youtube.com/watch?v=rjLhTN59Bg4  
