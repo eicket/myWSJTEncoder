@@ -1,4 +1,5 @@
 // Erik Icket, ON4PB - 2022
+
 package test.displayERF;
 
 import javafx.application.Application;
@@ -19,7 +20,7 @@ public class Start extends Application
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
-        stage.setTitle("myGaussian by ON4PB");
+        stage.setTitle("Gaussian smoothed pulse by ON4PB");
         stage.show();
     }
 

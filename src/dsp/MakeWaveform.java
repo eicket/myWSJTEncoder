@@ -1,14 +1,15 @@
 // Erik Icket, ON4PB - 2022
-package gaussian;
 
-import static common.Constants.SAMPLE_RATE;
+package dsp;
+
+import static dsp.ErrorFunction.erf;
 import java.util.logging.Logger;
-import static test.gaussian.ErrorFunction.erf;
 
-public class makeWaveform
+
+public class MakeWaveform
 {
 
-    static final Logger logger = Logger.getLogger(makeWaveform.class.getName());
+    static final Logger logger = Logger.getLogger(MakeWaveform.class.getName());
 
     // Calculate GFSK Gaussian smoothed pulse
     // The pulse is infinite but limited to 3 times the symbol length    
@@ -16,7 +17,6 @@ public class makeWaveform
     {
         // 5.336446256636997
         double K = Math.PI * Math.sqrt(2 / Math.log(2));
-
         double[] pulse = new double[3 * nrSamplesPerSymbol];
 
         for (int i = 0; i < 3 * nrSamplesPerSymbol; ++i)
@@ -37,11 +37,11 @@ public class makeWaveform
         // modulation index is 1, single tone spacing
         float modulationIndex = 1.0f;
 
-        // number of sinuses per symbol = NR_OF_SAMPLES_PER_SYMBOL * fBase / sampleRate
+        // number of sines per symbol = NR_OF_SAMPLES_PER_SYMBOL * fBase / sampleRate
         logger.info("synthesizing : f0 : " + fBase + ", sinuses per symbol : " + nrSamplesPerSymbol * fBase / sampleRate + ", symbolBT : " + symbolBT + ", samples per symbol : " + nrSamplesPerSymbol);
 
-        // delta phase advance in radians, for each symbol going up
-        double dphiBetweenSymbols = 2 * Math.PI * modulationIndex / nrSamplesPerSymbol;
+        // delta phase advance in radians, for each tone going up
+        double dphiBetweenTones = 2 * Math.PI * modulationIndex / nrSamplesPerSymbol;
 
         // array of delta phase advance in radians, between each sample
         // add two symbols for leading and trailing GFSK pulse symbol 
@@ -59,17 +59,16 @@ public class makeWaveform
         // loop for every symbol
         for (int iSymbol = 0; iSymbol < nrSymbols; iSymbol++)
         {
-
             int iSample = iSymbol * nrSamplesPerSymbol;
 
             // loop for every sample of the pulse
             for (int iPulse = 0; iPulse < 3 * nrSamplesPerSymbol; iPulse++)
             {
-                dphi[iPulse + iSample] += dphiBetweenSymbols * symbols[iSymbol] * pulse[iPulse];
+                dphi[iPulse + iSample] += dphiBetweenTones * symbols[iSymbol] * pulse[iPulse];
             }
         }
 
-        // make the fDeviation, the amplitude of the sample is the sinus of the phase
+        // make the fDeviation, the amplitude of the sample is the sine of the phase
         double[] audio = new double[nrOutputSamples];
         double phi = 0;
         for (int k = 0; k < nrOutputSamples; k++)
@@ -105,11 +104,11 @@ public class makeWaveform
         // modulation index is 1, single tone spacing
         float modulationIndex = 1.0f;
 
-        // number of sinuses per symbol = NR_OF_SAMPLES_PER_SYMBOL * fBase / sampleRate
+        // number of sines per symbol = NR_OF_SAMPLES_PER_SYMBOL * fBase / sampleRate
         logger.info("synthesizing : f0 : " + fBase + ", sinuses per symbol : " + nrSamplesPerSymbol * fBase / sampleRate + ", samples per symbol : " + nrSamplesPerSymbol);
 
-        // delta phase advance in radians, for each symbol going up
-        double dphiBetweenSymbols = 2 * Math.PI * modulationIndex / nrSamplesPerSymbol;
+        // delta phase advance in radians, for each tone going up
+        double dphiBetweenTones = 2 * Math.PI * modulationIndex / nrSamplesPerSymbol;
 
         // array of delta phase advance in radians, between each sample    
         double[] dphi = new double[nrOutputSamples];
@@ -128,11 +127,11 @@ public class makeWaveform
 
             for (int i = 0; i < nrSamplesPerSymbol; i++)
             {
-                dphi[i + iSample] += dphiBetweenSymbols * symbols[iSymbol];
+                dphi[i + iSample] += dphiBetweenTones * symbols[iSymbol];
             }
         }
 
-        // make the fDeviation, the amplitude of the sample is the sinus of the phase
+        // make the fDeviation, the amplitude of the sample is the sine of the phase
         double[] audio = new double[nrOutputSamples];
         double phi = 0;
         for (int k = 0; k < nrOutputSamples; k++)
@@ -144,7 +143,5 @@ public class makeWaveform
         }
 
         return audio;
-    }
-
-   
+    }   
 }

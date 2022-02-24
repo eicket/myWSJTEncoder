@@ -1,4 +1,5 @@
 // Erik Icket, ON4PB - 2022
+
 package dsp;
 
 import static common.Constants.FT4_SYMBOL_BT;
@@ -8,7 +9,6 @@ import static common.Constants.NR_OF_SAMPLES_PER_SYMBOL_FT8;
 import static common.Constants.SAMPLE_RATE;
 import static dsp.Utils.printArray;
 import static dsp.Utils.reverseByteArray;
-import gaussian.makeWaveform;
 import java.math.BigInteger;
 import java.util.BitSet;
 import java.util.logging.Logger;
@@ -20,29 +20,27 @@ public class FT
 
     public double[] makeFT4(int fBase, String message, double gain)
     {
-        // continuous phase 4-FSK, tone separation 20,833 Hz, is done by taking one more / less sinus per symbol for a modulation index of 1
+        // continuous phase 4-FSK, tone separation 20,833 Hz, is done by taking one more / less sine per symbol for a modulation index of 1
         // symbol duration : NR_OF_SAMPLES_PER_SYMBOL / 12000 = 0,048 sec with NR_OF_SAMPLES_PER_SYMBOL = 576
-        // number of sinuses per symbol = NR_OF_SAMPLES_PER_SYMBOL * fBase / sampleRate
-        // 576 samples * 1500 Hz / 12000 samples per sec = 72 sinuses 
-        // 73 sinuses => 1520,833 Hz
-        // 79 symbols * 576 / 12000 secs = 12,64 secs
+        // number of sines per symbol = NR_OF_SAMPLES_PER_SYMBOL * fBase / sampleRate
+        // 576 samples * 1500 Hz / 12000 samples per sec = 72 sines 
+        // 79 symbols * 576 / 12000 secs = 3,792 secs
 
         BigInteger bigCodeWord174 = encode(message, true);
         byte[] symbols = makeFT4Symbols(bigCodeWord174);
         reverseByteArray(symbols);
 
         // returns symbols.length * NR_OF_SAMPLES_PER_SYMBOL_FT4
-        double[] audio = makeWaveform.synthesizeWithGFSK(symbols, fBase, FT4_SYMBOL_BT, NR_OF_SAMPLES_PER_SYMBOL_FT4, SAMPLE_RATE, gain);
+        double[] audio = MakeWaveform.synthesizeWithGFSK(symbols, fBase, FT4_SYMBOL_BT, NR_OF_SAMPLES_PER_SYMBOL_FT4, SAMPLE_RATE, gain);
         return audio;
     }
 
     public double[] makeFT8(int fBase, String message, double gain)
     {
-        // continuous phase 8-FSK, tone separation 6,25 Hz, is done by taking one more / less sinus per symbol for a modulation index of 1
+        // continuous phase 8-FSK, tone separation 6,25 Hz, is done by taking one more / less sine per symbol for a modulation index of 1
         // symbol duration : NR_OF_SAMPLES_PER_SYMBOL / 12000 = 0,16 sec with NR_OF_SAMPLES_PER_SYMBOL = 1920
-        // number of sinuses per symbol = NR_OF_SAMPLES_PER_SYMBOL * fBase / sampleRate
-        // 1920 samples * 1500 Hz / 12000 samples per sec = 240 sinuses 
-        // 241 sinuses => 1506,25 Hz
+        // number of sines per symbol = NR_OF_SAMPLES_PER_SYMBOL * fBase / sampleRate
+        // 1920 samples * 1500 Hz / 12000 samples per sec = 240 sines 
         // 79 symbols * 1920 / 12000 secs = 12,64 secs
 
         BigInteger bigCodeWord174 = encode(message, false);
@@ -50,7 +48,7 @@ public class FT
         reverseByteArray(symbols);
 
         // returns symbols.length * NR_OF_SAMPLES_PER_SYMBOL_FT8
-        double[] audio = makeWaveform.synthesizeWithGFSK(symbols, fBase, FT8_SYMBOL_BT, NR_OF_SAMPLES_PER_SYMBOL_FT8, SAMPLE_RATE, gain);
+        double[] audio = MakeWaveform.synthesizeWithGFSK(symbols, fBase, FT8_SYMBOL_BT, NR_OF_SAMPLES_PER_SYMBOL_FT8, SAMPLE_RATE, gain);
         return audio;
     }
 

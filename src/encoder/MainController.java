@@ -1,4 +1,5 @@
 // Erik Icket, ON4PB - 2022
+
 package encoder;
 
 import dsp.WSPR;

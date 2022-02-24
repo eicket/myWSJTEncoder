@@ -5,7 +5,6 @@ import static common.Constants.FT8_SYMBOL_BT;
 import static common.Constants.NR_OF_SAMPLES_PER_SYMBOL_FT8;
 import static common.Constants.SAMPLE_RATE;
 import java.util.logging.Logger;
-import gaussian.makeWaveform;
 
 public class Tone
 {
@@ -24,8 +23,8 @@ public class Tone
             toneSymbols[i] = 0;
         }
 
-        double[] audio = new double[toneSymbols.length * NR_OF_SAMPLES_PER_SYMBOL_FT8];
-        audio = makeWaveform.synthesizeWithGFSK(toneSymbols, fBase, FT8_SYMBOL_BT, NR_OF_SAMPLES_PER_SYMBOL_FT8, SAMPLE_RATE, gain);
+        // returns toneSymbols.length * NR_OF_SAMPLES_PER_SYMBOL_FT8
+        double[] audio = MakeWaveform.synthesizeWithGFSK(toneSymbols, fBase, FT8_SYMBOL_BT, NR_OF_SAMPLES_PER_SYMBOL_FT8, SAMPLE_RATE, gain);
         return audio;
     }
 }

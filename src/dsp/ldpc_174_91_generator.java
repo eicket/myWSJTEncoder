@@ -1,18 +1,9 @@
-// Erik Icket, ON4PB - 2022
-
-/* from
-https://raw.githubusercontent.com/pavel-demin/ft8d/master/ldpc_174_91_c_generator.f90
-https://github.com/rtmrtmrtmrtm/weakmon/blob/master/ft8.py
- */
+// from https://sourceforge.net/p/wsjt/wsjtx/ci/master/tree/lib/ft8/ldpc_174_91_c_generator.f90
 package dsp;
-
-// LDPC generator matrix from WSJT-X's ldpc_174_91_c_generator.f90.
-// 83 rows, since LDPC(174,91) needs 83 parity bits.
-// each row has 23 hex digits, to be turned into 91 bits,
-/// to be xor'd with the 91 data bits.
 
 public class ldpc_174_91_generator
 {
+
     public static String[] ldpc_174_91 = new String[]
     {
         "8329ce11bf31eaf509f27fc",

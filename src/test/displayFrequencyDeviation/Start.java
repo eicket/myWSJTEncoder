@@ -1,7 +1,7 @@
 // Erik Icket, ON4PB - 2022
+
 package test.displayFrequencyDeviation;
 
-import test.displayERF.*;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +20,7 @@ public class Start extends Application
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
-        stage.setTitle("myGaussian by ON4PB");
+        stage.setTitle("Frequency deviation by ON4PB");
         stage.show();
     }
 

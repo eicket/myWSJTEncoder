@@ -1,5 +1,6 @@
-// see https://introcs.cs.princeton.edu/java/21function/ErrorFunction.java
-package test.gaussian;
+// from https://introcs.cs.princeton.edu/java/21function/ErrorFunction.java
+
+package dsp;
 
 /**
  * ****************************************************************************

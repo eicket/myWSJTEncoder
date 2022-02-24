@@ -1,6 +1,8 @@
+// Erik Icket, ON4PB - 2022
+
 package test.listERF;
 
-import static test.gaussian.ErrorFunction.erf;
+import static dsp.ErrorFunction.erf;
 import java.util.logging.Logger;
 
 public class ListERF

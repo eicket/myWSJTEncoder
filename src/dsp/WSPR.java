@@ -1,4 +1,5 @@
 // Erik Icket, ON4PB - 2022
+
 package dsp;
 
 import static common.Constants.NR_OF_SAMPLES_PER_SYMBOL_WSPR;
@@ -6,15 +7,13 @@ import static common.Constants.SAMPLE_RATE;
 import java.util.Arrays;
 import java.util.logging.Logger;
 import static dsp.Utils.printArray;
-import gaussian.makeWaveform;
 
 public class WSPR
 {
-    // continuous phase 4-FSK, tone separation 1.4648 Hz, is done by taking one more / less sinus per symbol
+    // continuous phase 4-FSK, tone separation 1.4648 Hz, is done by taking one more / less sine per symbol
     // symbol duration : NR_OF_SAMPLES_PER_SYMBOL / 12000 = 0,68 sec with NR_OF_SAMPLES_PER_SYMBOL = 8192
-    // number of sinuses per symbol = NR_OF_SAMPLES_PER_SYMBOL * fBase / sampleRate
+    // number of sines per symbol = NR_OF_SAMPLES_PER_SYMBOL * fBase / sampleRate
     // 8192 samples * 1500 Hz / 12000 samples per sec = 1024 sinuses 
-    // 1025 sinuses => 1501,4648 Hz
     // 162 symbols * 8192 / 12000 secs = 110,6 secs
 
     static final Logger logger = Logger.getLogger(WSPR.class.getName());
@@ -22,13 +21,11 @@ public class WSPR
     public double[] makeWSPR(int fBase, String message, double gain)
     {
         // 162 bytes are encoded, 1 symbol per byte
-        // each wsprSymbols byte contains a byte with the symbol, symbol values are 0,1,2,3 
+        // each symbols contains a byte with the symbol, symbol values are 0,1,2,3 
         byte[] symbols = encode(message);
 
-        // size is 1.327.104 doubles       
-        //   double[] audio = new double[symbols.length * NR_OF_SAMPLES_PER_SYMBOL_WSPR];
         // returns symbols.length * NR_OF_SAMPLES_PER_SYMBOL_WSPR
-        double[] audio = makeWaveform.synthesizeWithoutGFSK(symbols, fBase, NR_OF_SAMPLES_PER_SYMBOL_WSPR, SAMPLE_RATE, gain);
+        double[] audio = MakeWaveform.synthesizeWithoutGFSK(symbols, fBase, NR_OF_SAMPLES_PER_SYMBOL_WSPR, SAMPLE_RATE, gain);
         return audio;
     }
 

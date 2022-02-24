@@ -1,5 +1,4 @@
 // Erik Icket, ON4PB - 2022
-
 package encoder;
 
 import javafx.application.Application;
@@ -28,5 +27,4 @@ public class Start extends Application
     {
         launch(args);
     }
-
 }
