@@ -39,21 +39,21 @@ A single Gaussian smoothed frequency deviation pulse is created according to equ
 The length of the pulse is limited to a 3 symbol window and is superposed on the previous, current and next symbol.
 The frequency deviation, calculated as a phase angle, is calculated per sample with a raised-cosine ramp applied to the first and last symbol.
 
-The Gaussian-smoothed frequency deviation pulse has the following shape for FT4, FT8 and a rectangular frequency deviation :
+The Gaussian-smoothed frequency deviation pulse has the following shape for FT4 (BT=1), FT8 (BT=2) and an almost rectangular frequency deviation (BT=99) :
 
 ![Alt text](/screenshots/Pulse.jpg)
 
-The effect of the FT4 frequency deviation smoothing (BT=1) can be clearly observed, compared to a rectangular frequency deviation :
+The effect of the FT4 frequency deviation smoothing (BT=1) can be clearly observed, compared to a pure rectangular frequency deviation :
 
 ![Alt text](/screenshots/FT4_frequency_deviation.jpg)
 
-The above diagram shows freqeuncy deviations for symbols : 0, 1, 3, 2, 1, 0, 3, 1, 3, 0
+The above diagram shows frequency deviations for symbols : 0, 1, 3, 2, 1, 0, 3, 1, 3, 0
 
-As for FT8, a milder smoothing is applied (BT-2) :
+As for FT8, a milder smoothing is applied (BT=2) :
 
 ![Alt text](/screenshots/FT8_frequency_deviation.jpg)
 
-The above diagram shows freqeuncy deviations for symbols :  0, 1, 2, 2, 3, 4, 5, 7, 0, 6 
+The above diagram shows frequency deviations for symbols :  0, 1, 2, 2, 3, 4, 5, 7, 0, 6 
 
 ## ft8code utility
 
