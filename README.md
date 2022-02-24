@@ -36,7 +36,7 @@ As per the protocol definition, all modes use a continuous phase frequency shift
 
 FT4/FT8 frequency deviations are smoothed with a Gaussian filter. WSPR uses a rectangular frequency-deviation pulse.
 A single Gaussian smoothed frequency deviation pulse is created according to equation (3) in [1] and then superposed on each symbol. 
-The length of the pulse is limited to the length of 3 symbols and is superposed on the previous, current and next symbol, as the calculation of the frequency deviation for the message progresses .
+The length of the pulse is limited to 3 symbols and is superposed on the previous, current and next symbol, as the calculation of the frequency deviation for the message progresses .
 
 The Gaussian-smoothed frequency deviation pulse has the following shape :
 
