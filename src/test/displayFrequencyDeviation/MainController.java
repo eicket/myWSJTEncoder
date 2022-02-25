@@ -14,7 +14,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-// Erik Icket, ON4PB - 2022
 
 import javafx.util.Duration;
 
@@ -80,8 +79,8 @@ public class MainController
         timeline.play();
     }
 
-    // Synthesize the waveform and shape the phase with the GFSK smoothed pulse
-    // returns an array of frquencies for the symbols entered
+    // Synthesize the waveform 
+    // returns an array of frequency deviations for the symbols entered
     public static double[] calculateFrequencyDeviationWithoutGFSK(byte[] symbols, int nrSamplesPerSymbol, int sampleRate)
     {
         int nrOutputSamples = symbols.length * nrSamplesPerSymbol;
@@ -129,7 +128,7 @@ public class MainController
     }
 
     // Synthesize the waveform and shape the phase with the GFSK smoothed pulse
-    // returns an array of frquencies for the symbols entered
+    // returns an array of frquency deviations for the symbols entered
     public static double[] calculateFrequencyDeviationWithGFSK(byte[] symbols, float symbolBT, int nrSamplesPerSymbol, int sampleRate)
     {
         int nrOutputSamples = symbols.length * nrSamplesPerSymbol;
@@ -182,5 +181,4 @@ public class MainController
 
         return fDeviation;
     }
-
 }

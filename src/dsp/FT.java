@@ -376,39 +376,33 @@ public class FT
                 case 0:
                 case 36:
                 case 72:
-                    //          symbol[i] = 2;
                     symbol[i] = 2;
                     break;
 
                 case 1:
                 case 37:
                 case 73:
-                    //           symbol[i] = 5;
                     symbol[i] = 5;
                     break;
                 case 2:
                 case 38:
                 case 74:
-                    // symbol[i] = 6;
                     symbol[i] = 6;
 
                     break;
                 case 3:
                 case 39:
                 case 75:
-                    //  symbol[i] = 0;
                     symbol[i] = 0;
                     break;
                 case 4:
                 case 40:
                 case 76:
-                    //   symbol[i] = 4;
                     symbol[i] = 4;
                     break;
                 case 5:
                 case 41:
                 case 77:
-                    //  symbol[i] = 1;
                     symbol[i] = 1;
                     break;
                 case 6:
